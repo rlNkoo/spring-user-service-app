@@ -33,7 +33,7 @@ public class RegistrationController {
         User user = userService.registerUser(registration);
         publisher.publishEvent(new RegistrationCompleteEvent(user, ""));
 
-        return "redirect:/registration//registration-form?success";
+        return "redirect:/registration/registration-form?success";
 
     }
 }

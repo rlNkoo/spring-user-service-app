@@ -27,7 +27,7 @@ public class UserService implements IUserService{
         var user = new User(registration.getFirstName(), registration.getLastName(),
                 registration.getEmail(), passwordEncoder.encode(registration.getPassword()),
                 Arrays.asList(new Role("ROLE_USER")));
-        return user;
+        return userRepository.save(user);
     }
 
     @Override

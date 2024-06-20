@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="fragments :: boots_trap">
+<head th:replace="~{fragments :: boots_trap}">
     <meta charset="UTF-8">
     <title>User Registration Form</title>
 </head>
 <body>
 <div class="container col-md-offset-3 col-md-8 mt-lg-5">
-    <div th:replace="fragments :: nav_bar"></div>
+    <div th:replace="~{fragments :: nav_bar}"></div>
     <div class="row mt-2">
         <div th:if="${param.success}" class=" alert alert-info">
             Registration successful,
@@ -16,7 +16,7 @@
     </div>
     <form th:action="@{/registration/register}" method="post" th:object="${user}" class="px-4">
         <div class="mb-3 row">
-            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+            <label for="firstName" class="col-sm-2 col-form-label">first Name</label>
             <div class="col-sm-6">
                 <input type="text"  id="firstName" autofocus="autofocus"
                        class="form-control" required name="firstName" th:field="*{firstName}" >
@@ -49,7 +49,7 @@
         <div>
             <button type="submit" class="btn btn-success">Register</button>
             <span>Registered already? <a href="/" th:href="@{/login}">
-         Login here.
+         Login here
      </a></span>
         </div>
     </form>

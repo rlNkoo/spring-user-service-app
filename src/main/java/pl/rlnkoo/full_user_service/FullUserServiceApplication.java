@@ -9,5 +9,4 @@ public class FullUserServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FullUserServiceApplication.class, args);
 	}
-
 }

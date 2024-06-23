@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.rlnkoo.full_user_service.event.RegistrationCompleteEvent;
 import pl.rlnkoo.full_user_service.user.IUserService;
 import pl.rlnkoo.full_user_service.user.User;
+import pl.rlnkoo.full_user_service.utility.UrlUtil;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,9 +32,9 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") RegistrationRequest registration) {
+    public String registerUser(@ModelAttribute("user") RegistrationRequest registration, HttpServletRequest request) {
         User user = userService.registerUser(registration);
-        publisher.publishEvent(new RegistrationCompleteEvent(user, ""));
+        publisher.publishEvent(new RegistrationCompleteEvent(user, UrlUtil.getApplicationUrl(request)));
 
         return "redirect:/registration/registration-form?success";
 

@@ -47,15 +47,16 @@ public class RegistrationController {
         if (theToken.isPresent() && theToken.get().getUser().isEnabled()) {
             return "redirect:/login?verified";
         }
-        String verificationResult = tokenService.validateToken(String.valueOf(theToken));
-        if (verificationResult.equalsIgnoreCase("invalid")) {
-            return "redirect:/error?invalid";
-        } else if (verificationResult.equalsIgnoreCase("expired")) {
-            return "redirect:/error?expired";
-        } else if (verificationResult.equalsIgnoreCase("valid")) {
-            return "redirect:/login?valid";
+        String verificationResult = tokenService.validateToken(String.valueOf(token));
+        switch (verificationResult.toLowerCase()) {
+            case "expired":
+                return "redirect:/error?expired";
+            case "valid":
+                return "redirect:/login?valid";
+            default:
+                return "redirect:/error?invalid";
         }
-        return "redirect:/error?invalid";
+
 
     }
 }

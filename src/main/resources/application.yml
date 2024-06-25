@@ -1,23 +1,27 @@
 server:
   port: 8080
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/full_user_service_db
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
   mail:
     host: smtp.gmail.com
     port: 587
-    username: pl.rlnkoo.java@gmail.com
-    password: Bielsko2024!
+    username: rolakartur96@gmail.com
+    password: gjcv aeps pkim uvkk
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+            required: true

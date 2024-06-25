@@ -36,7 +36,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         tokenService.saveVerifiactionTokenForUser(user, vToken);
 
         // 4. Build the verification URL
-        String url = event.getConfirmationUrl() + "/registration/verifyEmail?token" + vToken;
+        String url = event.getConfirmationUrl() + "/registration/verifyEmail?token=" + vToken;
 
         // 5. Send the email to the user
         try {
@@ -64,7 +64,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
             throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         var messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("pl.rlnkoo.java@gmail.com", senderName);
+        messageHelper.setFrom("rolakartur96@gmail.com", senderName);
         messageHelper.setTo(user.getEmail());
         messageHelper.setSubject(subject);
         messageHelper.setText(mailContent, true);

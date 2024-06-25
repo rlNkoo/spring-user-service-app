@@ -1,7 +1,6 @@
 package pl.rlnkoo.full_user_service.registration.token;
 
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 import org.springframework.stereotype.Service;
 import pl.rlnkoo.full_user_service.user.User;
 import pl.rlnkoo.full_user_service.user.UserRepository;

@@ -41,6 +41,7 @@ public class RegistrationController {
         return "redirect:/registration/registration-form?success";
     }
 
+    @GetMapping("/verifyEmail")
     public String verifyEmail(@RequestParam("token") String token) {
         Optional<VerificationToken> theToken = tokenService.findByToken(token);
         if (theToken.isPresent() && theToken.get().getUser().isEnabled()) {

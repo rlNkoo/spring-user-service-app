@@ -3,6 +3,7 @@ package pl.rlnkoo.full_user_service.registration.password;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.rlnkoo.full_user_service.user.User;
 import pl.rlnkoo.full_user_service.user.UserRepository;
 
 import java.util.Calendar;
@@ -29,5 +30,22 @@ public class PasswordResetTokenService implements IPasswordResetTokenService {
             return "expired";
         }
         return "valid";
+    }
+
+    @Override
+    public Optional<User> findUserByPasswordResetToken(String theToken) {
+        return Optional.ofNullable(passwordResetTokenRepository.findByToken(theToken).get().getUser());
+    }
+
+    @Override
+    public void resetPassword(User theUser, String newPassword) {
+        theUser.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(theUser);
+    }
+
+    @Override
+    public void createPasswordResetTokenForUser(User user, String passwordResetToken) {
+        PasswordResetToken resetToken = new PasswordResetToken(passwordResetToken, user);
+        passwordResetTokenRepository.save(resetToken);
     }
 }

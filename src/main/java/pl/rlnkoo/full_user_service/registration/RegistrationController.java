@@ -101,10 +101,21 @@ public class RegistrationController {
         return "password-reset-form";
     }
 
+    @PostMapping("/reset-password")
     public String resetPassword(HttpServletRequest request) {
         String theToken = request.getParameter("token");
         String password = request.getParameter("password");
         String tokenVerificationResult = passwordResetTokenService.validatePasswordResetToken(theToken);
+
+        if (!tokenVerificationResult.equalsIgnoreCase("valid")) {
+            return "redirect:/error?invalid_token";
+        }
+        Optional<User> theUser = passwordResetTokenService.findUserByPasswordResetToken(theToken);
+        if (theUser.isPresent()) {
+            passwordResetTokenService.resetPassword(theUser.get(), password);
+            return "redirect:/login?reset_success";
+        }
+        return "redirect:/error?not_found";
 
 
     }

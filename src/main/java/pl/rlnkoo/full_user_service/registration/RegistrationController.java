@@ -87,7 +87,7 @@ public class RegistrationController {
         String url = UrlUtil.getApplicationUrl(request) + "/registration/password-reset-form?token="
                 + passwordResetToken;
         try {
-            eventListener.sendPasswordResetVerificationService(url);
+            eventListener.sendPasswordResetVerificationEmail(url);
         } catch (MessagingException | UnsupportedEncodingException e) {
             model.addAttribute("error", e.getMessage());
         }

@@ -43,4 +43,9 @@ public class VerificationTokenService implements IVerificationTokenService {
     public Optional<VerificationToken> findByToken(String token) {
         return tokenRepository.findByToken(token);
     }
+
+    @Override
+    public void deleteUserToken(long id) {
+        tokenRepository.deleteByUserId(id);
+    }
 }

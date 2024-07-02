@@ -10,6 +10,7 @@ This is a web application developed using Java and the Spring Boot framework. Th
 - **Spring Boot**
 - **Spring Security**
 - **Thymeleaf**
+- **MySQL**
 
 ## Features
 
